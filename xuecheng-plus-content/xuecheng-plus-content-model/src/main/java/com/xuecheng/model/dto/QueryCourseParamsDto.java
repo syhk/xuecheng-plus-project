@@ -10,6 +10,12 @@ import lombok.ToString;
  * @description 课程查询条件模型类
  * @date 2023/2/11 15:37
  */
+
+/**
+ * DTO (Data Transfer Object) 数据传输对象，用于封装业务数据，进行传输
+ * PO (Persistent Object) / BO （Business Object） 持久化对象，用于封装数据库表中的字段，一般与数据库表一一对应
+ */
+
 @Data
 @ToString
 public class QueryCourseParamsDto {
