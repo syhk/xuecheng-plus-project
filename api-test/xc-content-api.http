@@ -1,0 +1,15 @@
+###　利用环境变量统一管理接口测试前缀
+### 文件名固定为： http-client.env.json
+### 查询课程信息
+POST {{content_host}}/content/course/list?pageNo=1&pageSize=3
+Content-Type: application/json
+
+{
+  "auditStatus": "202004",
+  "courseName": "java",
+  "publishStatus": "203001"
+}
+
+### 数据类型和 Json 参数之间一定要有一个行空行，否则无法请求
+
+
