@@ -12,4 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CourseCategoryMapper extends BaseMapper<CourseCategory> {
 
+//    使用递归查询分类
+
 }

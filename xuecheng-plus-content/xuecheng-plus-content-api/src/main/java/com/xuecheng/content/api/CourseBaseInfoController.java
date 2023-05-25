@@ -3,6 +3,8 @@ package com.xuecheng.content.api;
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
 import com.xuecheng.content.service.CourseBaseInfoService;
+import com.xuecheng.model.dto.AddCourseDto;
+import com.xuecheng.model.dto.CourseBaseInfoDto;
 import com.xuecheng.model.dto.QueryCourseParamsDto;
 import com.xuecheng.model.po.CourseBase;
 import io.swagger.annotations.Api;
@@ -38,4 +40,21 @@ public class CourseBaseInfoController {
     public PageResult<CourseBase> list(PageParams pageParams, @RequestBody(required=false) QueryCourseParamsDto queryCourseParamsDto) {
         return courseBaseInfoService.queryCourseBaseList(pageParams,queryCourseParamsDto);
     }
+
+
+
+    //机构id，由于认证系统没有上线暂时硬编码
+    Long companyId = 1232141425L;
+
+
+//    TODO 这个接口测试失败，需要再次测试
+    @ApiOperation("新增课程")
+    @PostMapping("/content/course")
+    public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto){
+
+        CourseBaseInfoDto courseBase = courseBaseInfoService.createCourseBase(companyId, addCourseDto);
+        return courseBase;
+    }
+
+
 }
