@@ -41,19 +41,14 @@ public class CourseBaseInfoController {
         return courseBaseInfoService.queryCourseBaseList(pageParams,queryCourseParamsDto);
     }
 
-
-
     //机构id，由于认证系统没有上线暂时硬编码
     Long companyId = 1232141425L;
 
 
-//    TODO 这个接口测试失败，需要再次测试
     @ApiOperation("新增课程")
-    @PostMapping("/content/course")
+    @PostMapping("/course")
     public CourseBaseInfoDto createCourseBase(@RequestBody AddCourseDto addCourseDto){
-
-        CourseBaseInfoDto courseBase = courseBaseInfoService.createCourseBase(companyId, addCourseDto);
-        return courseBase;
+        return courseBaseInfoService.createCourseBase(companyId, addCourseDto);
     }
 
 
