@@ -1,31 +1,64 @@
-server:
-  servlet:
-    context-path: /content # 配置项目访问根路径
-  port: 8888
+# 使用 nacos 配置中心作配置管理
+#server:
+#  servlet:
+#    context-path: /content # 配置项目访问根路径
+#  port: 8888
 #微服务配置
 spring:
   application:
-    name: content-api
+    name: content-api # Nacos 根据此确定配置文件配置的 Data Id 三要素：　服务名-环境名-后缀名 content-api-dev.yaml
   cloud:
     nacos:
+      server-addr: 192.168.96.139:8848
       discovery:
-        server-addr: 192.168.96.139:8848
-        namespace: dev
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.96.139:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: 123456
-# 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
+#       nacos 新建一个命名空间，Id为devsyhk
+        namespace: devsyhk
+        group: xuecheng-plus-project
+      config:
+        namespace: devsyhk
+        group: xuecheng-plus-project
+        file-extension: yaml
+        refresh-enabled: true
+        #        api 不需要配置数据源，数据源在 content-service 中配置
+        #        api 工程在这里引用 content-service 工程的配置文件
+        extension-configs: # 引用 content-service 工程的配置文件
+          - data-id: content-service-${spring.profiles.active}.yaml
+            group: xuecheng-plus-project
+            refresh: true
+        #        引用公共配置文件
+        shared-configs:
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+          - data-id: swagger-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
+# 配置优先级： 项目应用名配置 >  扩展配置 > 共享配置文件 > 本地配置文件
+#  在 nacos 中配置本地优先级配置文件，优先级最高
+#  #配置本地优先 ，在 nacos 中配置
+#  spring:
+#    cloud:
+#      config:
+#        override-none: true
 
-swagger:
-  title: "学成在线内容管理系统"
-  description: "内容系统管理系统对课程相关信息进行管理"
-  base-package: com.xuecheng.content
-  enabled: true
-  version: 1.0.0
+
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.168.96.139:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false
+#    username: root
+#    password: 123456
+  profiles:
+    active: dev # 环境名
+# 日志文件配置路径
+#logging:
+#  config: classpath:log4j2-dev.xml
+#
+#swagger:
+#  title: "学成在线内容管理系统"
+#  description: "内容系统管理系统对课程相关信息进行管理"
+#  base-package: com.xuecheng.content
+#  enabled: true
+#  version: 1.0.0
 
 
 

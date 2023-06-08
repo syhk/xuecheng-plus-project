@@ -15,11 +15,17 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+<!--      服务发现依赖 用于服务注册 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
+<!--       配置依赖 用于配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
 
         <!--cloud的基础环境包-->
         <dependency>

@@ -1,14 +1,24 @@
 #微服务配置
 spring:
+  profiles:
+    active: dev # 环境名
   application:
     name: content-service
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.96.139:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false
-#  问题描述：
-#  问题解决方法：  ?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: 123456
+  cloud:
+    nacos:
+      server-addr: 192.168.96.139:8848
+      config:
+        namespace: devsyhk
+        group: xuecheng-plus-project
+        file-extension: yaml # 配置文件后缀名
+        refresh-enabled: true # 开启动态刷新
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.168.96.139:3306/xc_content?serverTimezone=UTC&userUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false
+##  问题描述：
+##  问题解决方法：  ?allowPublicKeyRetrieval=true&useSSL=false
+#    username: root
+#    password: 123456
 # 日志文件配置路径
 logging:
   config: classpath:log4j2-dev.xml
