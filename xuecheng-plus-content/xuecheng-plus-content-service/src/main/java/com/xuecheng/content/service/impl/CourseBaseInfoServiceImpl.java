@@ -160,6 +160,11 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         return findCourseBaseById(courseId);
     }
 
+    @Override
+    public CourseBaseInfoDto getCourseBaseInfo(Long courseId) {
+        return null;
+    }
+
     //    查询课程信息
     public CourseBaseInfoDto  findCourseBaseById(Long id) {
 //        从课程基本信息表查询

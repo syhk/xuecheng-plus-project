@@ -49,5 +49,5 @@ public interface CourseBaseInfoService {
     CourseBaseInfoDto modifyCourseBase(Long companId,EditCourseDto editCourseDto);
 
 
-
+    CourseBaseInfoDto getCourseBaseInfo(Long courseId);
 }

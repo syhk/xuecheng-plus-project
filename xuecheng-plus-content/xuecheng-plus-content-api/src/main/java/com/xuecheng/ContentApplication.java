@@ -3,6 +3,7 @@ package com.xuecheng;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author Mr.M
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description 内容管理服务启动类
  * @date 2023/2/11 15:49
  */
+@EnableFeignClients(basePackages = {"com.xuecheng.content.feignclient"}) // 开启 feign 客户端
 @EnableSwagger2Doc // 生成接口文档
 //http://localhost:63040/content/swagger-ui.html 访问地址查看接口信息
 @SpringBootApplication
